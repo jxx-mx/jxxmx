@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "gen": "npx supabase gen types --lang=typescript --project-id 'qrwybqppntxugeanxces' --schema public > lib/types/supabase.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
