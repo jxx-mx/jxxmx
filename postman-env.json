@@ -1,0 +1,14 @@
+{
+  "id": "JXXMX-ENV",
+  "name": "JXXMX Env",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "https://jxxmx.com",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-08-02T00:00:00.000Z",
+  "_postman_exported_using": "Postman/11.56.3"
+}
