@@ -14,18 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      health_check_ping: {
+      dev_health_check_ping: {
         Row: {
           created_at: string | null
           id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
           id?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
           id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      prod_health_check_ping: {
+        Row: {
+          created_at: string | null
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          user_id?: string | null
         }
         Relationships: []
       }
