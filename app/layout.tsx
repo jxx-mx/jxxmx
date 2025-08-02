@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import "./globals.css";
+import "../style/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Nav } from "@/components/nav";
 
