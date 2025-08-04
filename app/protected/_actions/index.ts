@@ -82,3 +82,74 @@ export async function getHealthCheckPings() {
     };
   }
 }
+
+export async function translateText(text: string) {
+  try {
+    const { userId } = await auth();
+
+    if (!userId) {
+      return {
+        error: "인증되지 않은 사용자입니다.",
+        success: false,
+      };
+    }
+
+    if (!text.trim()) {
+      return {
+        error: "번역할 텍스트를 입력해주세요.",
+        success: false,
+      };
+    }
+
+    const apiKey = process.env.DEEPL_API_KEY;
+    if (!apiKey) {
+      return {
+        error: "DeepL API 키가 설정되지 않았습니다.",
+        success: false,
+      };
+    }
+
+    const url = "https://api-free.deepl.com/v2/translate";
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `DeepL-Auth-Key ${apiKey}`,
+      },
+      body: JSON.stringify({
+        text: [text],
+        target_lang: "KO",
+        source_lang: "EN",
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("DeepL API 오류:", errorData);
+      return {
+        error: `번역 API 오류: ${response.status}`,
+        success: false,
+      };
+    }
+
+    const data = await response.json();
+    const translation = data.translations[0];
+
+    return {
+      data: {
+        originalText: text,
+        translatedText: translation.text,
+        detectedSourceLang: translation.detected_source_language,
+      },
+      success: true,
+      message: "번역이 성공적으로 완료되었습니다.",
+    };
+  } catch (error) {
+    console.error("translateText 오류:", error);
+    return {
+      error: "번역 중 오류가 발생했습니다.",
+      success: false,
+    };
+  }
+}
