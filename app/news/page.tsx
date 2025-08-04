@@ -73,12 +73,12 @@ export default function NewsPage() {
         onValueChange={setActiveTab}
         className="space-y-6"
       >
-        <TabsList className="bg-transparent overflow-x-auto w-full scrollbar-hide gap-2 justify-start flex-nowrap">
+        <TabsList className="bg-transparent overflow-x-auto w-full md:w-fit scrollbar-hide gap-2 justify-start flex-nowrap">
           {NEWS_KEYWORDS.map((keyword) => (
             <TabsTrigger
               key={keyword}
               value={keyword}
-              className="bg-transparent rounded-full border-border px-4 TabsTrigger flex-shrink-0 whitespace-nowrap"
+              className="bg-transparent rounded-full border-border px-4 w-fit flex-none"
             >
               {keyword}
             </TabsTrigger>
