@@ -6,18 +6,19 @@ export const revalidate = 600;
 export default async function Home() {
   const user = await currentUser();
 
-  return (
-    <main>
-      <h1>Home Page</h1>
-      {user ? <LoggedInUser user={user} /> : <LoggedOutUser />}
-    </main>
-  );
+  return <main>{user ? <LoggedInUser user={user} /> : <LoggedOutUser />}</main>;
 }
 
 function LoggedInUser({ user }: { user: User }) {
   return (
     <div>
-      Welcome {user.fullName} go to <Link href="/protected">protected</Link>
+      <p className="text-3xl font-semibold w-fit">{user.username}</p>
+      <Link href="/deep-l" className="mt-4 text-3xl font-semibold block">
+        DeepL
+      </Link>
+      <Link href="/news" className="mt-4 text-3xl font-semibold block">
+        News
+      </Link>
     </div>
   );
 }

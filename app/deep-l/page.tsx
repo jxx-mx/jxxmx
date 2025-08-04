@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function ProtectedPage() {
+export default function DeepLPage() {
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState<{
     originalText: string;
