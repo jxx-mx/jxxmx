@@ -22,6 +22,10 @@ type NewsArticle = {
   urlToImage: string;
   publishedAt: string;
   content: string;
+  source: {
+    id: string;
+    name: string;
+  };
 };
 
 export type NewsResponse = {
@@ -119,7 +123,7 @@ export default function NewsPage() {
 
                     <CardHeader className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="secondary">{keyword}</Badge>
+                        <Badge variant="secondary">{article.source.name}</Badge>
                         <span className="text-xs text-muted-foreground">
                           {formatDate(article.publishedAt)}
                         </span>
@@ -135,12 +139,6 @@ export default function NewsPage() {
                           {article.title}
                         </a>
                       </CardTitle>
-
-                      {article.author && (
-                        <div className="text-sm text-muted-foreground">
-                          작성자: {article.author}
-                        </div>
-                      )}
                     </CardHeader>
 
                     <CardContent className="pt-0">
