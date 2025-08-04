@@ -221,15 +221,17 @@ export default function DeepLPage() {
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label className="text-sm font-medium">원본 (영어)</Label>
-                  <div className="p-3 bg-gray-50 border rounded-md min-h-[80px]">
-                    <p className="text-sm">{result.originalText}</p>
+                  <div className="p-3 bg-secondary border rounded-md min-h-[80px]">
+                    <p className="text-sm text-muted-foreground">
+                      {result.originalText}
+                    </p>
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-sm font-medium">번역본 (한국어)</Label>
-                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-md min-h-[80px]">
-                    <p className="text-sm font-medium text-blue-900">
+                  <div className="p-3 bg-secondary border rounded-md min-h-[80px]">
+                    <p className="text-sm font-medium text-muted-foreground">
                       {result.translatedText}
                     </p>
                   </div>
