@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { translateText } from "./_actions";
+import { useState, useTransition, useEffect } from "react";
+import { translateText, getUsage } from "./_actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,6 +22,31 @@ export default function ProtectedPage() {
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [usage, setUsage] = useState<{
+    character_count: number;
+    character_limit: number;
+  } | null>(null);
+  const [usageError, setUsageError] = useState<string | null>(null);
+
+  // 페이지 로드 시 사용량 정보 가져오기
+  useEffect(() => {
+    fetchUsage();
+  }, []);
+
+  const fetchUsage = async () => {
+    try {
+      const response = await getUsage();
+      if (response.success && response.data) {
+        setUsage(response.data);
+        setUsageError(null);
+      } else {
+        setUsageError(response.error || "사용량 정보를 가져올 수 없습니다.");
+      }
+    } catch (error) {
+      setUsageError("사용량 정보를 가져오는 중 오류가 발생했습니다.");
+      console.error("Usage fetch error:", error);
+    }
+  };
 
   const handleTranslate = () => {
     if (!inputText.trim()) {
@@ -38,6 +63,8 @@ export default function ProtectedPage() {
 
         if (response.success && response.data) {
           setResult(response.data);
+          // 번역 완료 후 사용량 정보 업데이트
+          fetchUsage();
         } else {
           setError(response.error || "번역 중 오류가 발생했습니다.");
         }
@@ -56,7 +83,7 @@ export default function ProtectedPage() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto mt-10">
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold">영어 번역 서비스</h1>
@@ -64,6 +91,87 @@ export default function ProtectedPage() {
             영어 텍스트를 입력하면 한국어로 번역해드립니다.
           </p>
         </div>
+
+        {/* 사용량 정보 */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <span>DeepL API 사용량</span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={fetchUsage}
+                disabled={isPending}
+              >
+                새로고침
+              </Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {usageError ? (
+              <div className="text-sm text-red-600">{usageError}</div>
+            ) : usage ? (
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">
+                    사용한 글자수:
+                  </span>
+                  <span className="font-medium">{usage.character_count}자</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">
+                    전체 한도:
+                  </span>
+                  <span className="font-medium">
+                    {usage.character_limit.toLocaleString()}자
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">
+                    남은 글자수:
+                  </span>
+                  <span
+                    className={`font-medium ${
+                      usage.character_count / usage.character_limit > 0.8
+                        ? "text-red-600"
+                        : "text-green-600"
+                    }`}
+                  >
+                    {usage.character_limit - usage.character_count}자
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                  <div
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      usage.character_count / usage.character_limit > 0.8
+                        ? "bg-red-500"
+                        : usage.character_count / usage.character_limit > 0.5
+                        ? "bg-yellow-500"
+                        : "bg-green-500"
+                    }`}
+                    style={{
+                      width: `${Math.min(
+                        (usage.character_count / usage.character_limit) * 100,
+                        100
+                      )}%`,
+                    }}
+                  ></div>
+                </div>
+                <div className="text-xs text-muted-foreground text-center">
+                  {(
+                    (usage.character_count / usage.character_limit) *
+                    100
+                  ).toFixed(1)}
+                  % 사용됨
+                </div>
+              </div>
+            ) : (
+              <div className="text-sm text-muted-foreground">
+                사용량 정보를 불러오는 중...
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
