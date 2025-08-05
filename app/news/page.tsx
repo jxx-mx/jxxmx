@@ -15,7 +15,7 @@ import Image from "next/image";
 import { NEWS_KEYWORDS } from "@/lib/constant";
 
 type NewsArticle = {
-  author: string;
+  author: string | null;
   title: string;
   description: string;
   url: string;
