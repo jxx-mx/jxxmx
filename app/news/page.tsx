@@ -15,22 +15,22 @@ import Image from "next/image";
 import { NEWS_KEYWORDS } from "@/lib/constant";
 
 type NewsArticle = {
-  author: string | null;
+  id: string;
   title: string;
   description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
   content: string;
+  url: string;
+  image: string;
+  publishedAt: string;
   source: {
     id: string;
     name: string;
+    url: string;
   };
 };
 
 export type NewsResponse = {
-  status: string;
-  totalResults: number;
+  totalArticles: number;
   articles: NewsArticle[];
 };
 
@@ -109,10 +109,10 @@ export default function NewsPage() {
                     key={index}
                     className="flex flex-col h-full hover:shadow-lg transition-shadow"
                   >
-                    {article.urlToImage && (
+                    {article.image && (
                       <div className="relative w-full h-48 overflow-hidden rounded-t-xl">
                         <Image
-                          src={article.urlToImage}
+                          src={article.image}
                           alt={article.title}
                           fill
                           className="object-cover"
@@ -122,11 +122,10 @@ export default function NewsPage() {
                     )}
 
                     <CardHeader className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="secondary">{article.source.name}</Badge>
-                        <span className="text-xs text-muted-foreground">
-                          {formatDate(article.publishedAt)}
-                        </span>
+                      <div className="mb-2">
+                        <Badge variant="secondary" className="block w-fit">
+                          {article.source.name}
+                        </Badge>
                       </div>
 
                       <CardTitle>
@@ -147,6 +146,9 @@ export default function NewsPage() {
                       </CardDescription>
 
                       <div className="mt-4">
+                        <p className="text-xs text-muted-foreground">
+                          {formatDate(article.publishedAt)}
+                        </p>
                         <a
                           href={article.url}
                           target="_blank"
