@@ -1,18 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { Bell, MessageCirclePlus, Rss, Settings } from "lucide-react";
+import { Bell, CirclePlus, Glasses, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const navigation = [
   {
     href: "/",
-    icon: Rss,
+    icon: Glasses,
     label: "와치리스트",
   },
   {
     href: "/register",
-    icon: MessageCirclePlus,
+    icon: CirclePlus,
     label: "키워드 등록",
   },
   {
@@ -37,11 +37,11 @@ export function Navigation() {
           <Link href={item.href} key={index}>
             <button
               type="button"
-              className={`px-4 py-2 flex flex-col items-center gap-1 ${
+              className={`p-4 flex flex-col items-center gap-1 ${
                 pathname === item.href ? "text-primary" : "text-foreground/50"
               }`}
             >
-              <item.icon size={20} />
+              <item.icon size={24} />
               <p className="text-[8px]">{item.label}</p>
             </button>
           </Link>
