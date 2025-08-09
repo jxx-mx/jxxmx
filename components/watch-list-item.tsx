@@ -15,7 +15,7 @@ export function WatchListItem({
           {item.keyword.slice(0, 1).toUpperCase()}
         </div>
         <div>
-          <p className="text-sm font-medium capitalize">{item.keyword}</p>
+          <p className="text-xs font-medium capitalize">{item.keyword}</p>
           <p className="text-[10px] text-foreground/50">
             {new Date(item.createdAt).toLocaleDateString()}
           </p>
