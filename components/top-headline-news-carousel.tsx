@@ -17,8 +17,8 @@ export async function TopHeadlineNewsCarousel() {
   const headlineNews = await fetchHeadlineNews();
 
   return (
-    <div className="relative">
-      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+    <div className="relative mb-6">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory">
         {headlineNews.articles?.map((article, index) => (
           <div
             key={index}
@@ -60,8 +60,8 @@ export async function TopHeadlineNewsCarousel() {
 
 export function TopHeadlineNewsCarouselSkeleton() {
   return (
-    <div className="relative">
-      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+    <div className="relative mb-6">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory">
         {Array.from({ length: 5 }).map((_, index) => (
           <Skeleton
             key={index}

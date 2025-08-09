@@ -88,6 +88,7 @@ export async function fetchHeadlineNews(): Promise<NewsResponse> {
   const news = await client.topHeadlines({
     lang: "en",
     country: "us",
+    category: "business",
     in: "title",
     from: date.toISOString().split("T")[0],
     to: date.toISOString().split("T")[0],
@@ -122,6 +123,16 @@ const dummyWatchList = [
   {
     id: "3",
     keyword: "google",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "4",
+    keyword: "meta",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "5",
+    keyword: "amazon",
     createdAt: new Date().toISOString(),
   },
 ];

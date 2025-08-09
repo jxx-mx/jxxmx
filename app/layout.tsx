@@ -3,8 +3,8 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "../style/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
+import { TopHeader } from "@/components/top-header";
+import { Navigation } from "@/components/navigation";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -37,11 +37,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Nav />
-            <div className="max-w-7xl mx-auto px-4">
-              {children}
-              <Footer />
-            </div>
+            <TopHeader />
+            <div className="max-w-7xl mx-auto px-4">{children}</div>
+            <Navigation />
           </ThemeProvider>
         </body>
       </html>

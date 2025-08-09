@@ -7,7 +7,7 @@ import {
 import { Button } from "@/components/button";
 import ThemeSwitcher from "./theme-switcher";
 
-export function Footer() {
+export function TermsOfService() {
   return (
     <Drawer>
       <DrawerTrigger asChild className="my-4">

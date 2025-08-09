@@ -4,14 +4,16 @@ import { Star } from "lucide-react";
 import { deleteKeyword } from "@/app/_actions";
 
 export function WatchListItem({
+  type,
   item,
 }: {
+  type: "fill" | "outline";
   item: { id: string; keyword: string; createdAt: string };
 }) {
   return (
     <li className="flex items-center justify-between w-full pb-4">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 bg-secondary/50 rounded-full flex items-center justify-center text-sm font-medium border border-foreground/50">
+        <div className="w-9 h-9 bg-secondary/50 rounded-full flex items-center justify-center text-sm font-medium border border-foreground/50">
           {item.keyword.slice(0, 1).toUpperCase()}
         </div>
         <div>
@@ -23,7 +25,11 @@ export function WatchListItem({
       </div>
       <div>
         <button className="p-1" onClick={() => deleteKeyword(item.id)}>
-          <Star fill="currentColor" className="w-4 h-4" />
+          {type === "fill" ? (
+            <Star fill="currentColor" className="w-4 h-4" />
+          ) : (
+            <Star className="w-4 h-4" />
+          )}
         </button>
       </div>
     </li>

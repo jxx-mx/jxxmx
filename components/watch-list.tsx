@@ -1,14 +1,14 @@
 import { fetchWatchList } from "@/app/_actions";
-import { Button } from "@/components/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { WatchListItem } from "@/components/watch-list-item";
+import { Button } from "./button";
 import { Plus } from "lucide-react";
 
 export async function WatchList() {
   const watchList = await fetchWatchList();
 
   return (
-    <div className="mt-8">
+    <div>
       <p className="text-xs mb-4 font-semibold text-foreground">와치리스트</p>
       <ul>
         {watchList.length === 0 && (
@@ -26,12 +26,12 @@ export async function WatchList() {
           </div>
         )}
         {watchList.map((item) => (
-          <WatchListItem key={item.id} item={item} />
+          <WatchListItem key={item.id} type="fill" item={item} />
         ))}
         {watchList.length >= 1 && (
           <li>
             <button className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-secondary/30 rounded-full flex items-center justify-center text-sm font-medium border border-dashed border-foreground/30">
+              <div className="w-9 h-9 bg-secondary/30 rounded-full flex items-center justify-center text-sm font-medium border border-dashed border-foreground/30">
                 <Plus className="w-4 h-4 text-foreground/30" />
               </div>
               <p className="text-xs font-semibold text-foreground/30">추가</p>
@@ -45,16 +45,16 @@ export async function WatchList() {
 
 export function WatchListSkeleton() {
   return (
-    <div className="mt-8">
+    <div>
       <p className="text-xs mb-4 font-semibold text-foreground">와치리스트</p>
       <ul>
-        {Array.from({ length: 3 }).map((_, index) => (
+        {Array.from({ length: 5 }).map((_, index) => (
           <li
             key={index}
             className="flex items-center justify-between w-full pb-4"
           >
             <div className="flex items-center gap-2">
-              <Skeleton className="w-8 h-8 rounded-full" />
+              <Skeleton className="w-9 h-9 rounded-full" />
               <Skeleton
                 className={`h-4 ${
                   index === 0

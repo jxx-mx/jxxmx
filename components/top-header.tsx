@@ -8,7 +8,7 @@ import {
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-export async function Nav() {
+export async function TopHeader() {
   return (
     <header className="mb-4">
       <div className="flex justify-between items-center max-w-7xl mx-auto p-4">
