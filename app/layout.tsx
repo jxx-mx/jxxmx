@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import "../style/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Nav } from "@/components/nav";
+import { Footer } from "@/components/footer";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -38,6 +39,7 @@ export default function RootLayout({
           >
             <Nav />
             <div className="max-w-7xl mx-auto px-4">{children}</div>
+            <Footer />
           </ThemeProvider>
         </body>
       </html>

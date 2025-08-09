@@ -101,6 +101,7 @@ export async function fetchWatchList(): Promise<
   {
     id: string;
     keyword: string;
+    createdAt: string;
   }[]
 > {
   await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -111,13 +112,21 @@ const dummyWatchList = [
   {
     id: "1",
     keyword: "tesla",
+    createdAt: new Date().toISOString(),
   },
   {
     id: "2",
     keyword: "apple",
+    createdAt: new Date().toISOString(),
   },
   {
     id: "3",
     keyword: "google",
+    createdAt: new Date().toISOString(),
   },
 ];
+
+export async function deleteKeyword(id: string) {
+  console.log(id);
+  return dummyWatchList.filter((item) => item.id !== id);
+}

@@ -34,7 +34,7 @@ export async function TopHeadlineNewsCarousel() {
                     />
                   </div>
                 </div>
-                <p className="text-sm font-semibold">헤드라인 뉴스</p>
+                <p className="text-xs font-semibold">헤드라인 뉴스</p>
               </div>
             </div>
 
@@ -43,12 +43,12 @@ export async function TopHeadlineNewsCarousel() {
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base font-semibold line-clamp-2 h-12"
+                className="text-sm font-medium line-clamp-2 h-10"
               >
                 {article.description}
               </a>
             </div>
-            <p className="text-sm text-muted-foreground mt-8">
+            <p className="text-xs text-muted-foreground mt-8">
               {formatDate(article.publishedAt)}
             </p>
           </div>
@@ -77,13 +77,13 @@ export function TopHeadlineNewsCarouselSkeleton() {
                     />
                   </div>
                 </div>
-                <p className="text-sm font-semibold">헤드라인 뉴스</p>
+                <p className="text-xs font-semibold">헤드라인 뉴스</p>
               </div>
             </div>
 
-            <Skeleton className="w-full h-12" />
+            <Skeleton className="w-full h-10" />
 
-            <Skeleton className="w-36 h-5 mt-8" />
+            <Skeleton className="w-36 h-4 mt-8" />
           </Skeleton>
         ))}
       </div>
