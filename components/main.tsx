@@ -27,7 +27,7 @@ export type NewsResponse = {
 
 export default async function Main() {
   return (
-    <div className="container mx-auto">
+    <div>
       <p className="text-sm font-medium text-foreground/50 mb-6">
         {new Date().toLocaleDateString("ko-KR", {
           year: "numeric",

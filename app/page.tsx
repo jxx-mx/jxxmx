@@ -7,5 +7,5 @@ export const revalidate = 600;
 export default async function Home() {
   const user = await currentUser();
 
-  return <main>{user ? <Main /> : <Landing />}</main>;
+  return <>{user ? <Main /> : <Landing />}</>;
 }
