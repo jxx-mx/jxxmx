@@ -37,11 +37,11 @@ export function Navigation() {
           <Link href={item.href} key={index}>
             <button
               type="button"
-              className={`px-4 py-3 flex flex-col items-center gap-1 ${
+              className={`px-4 py-2.5 flex flex-col items-center gap-1 ${
                 pathname === item.href ? "text-primary" : "text-foreground/50"
               }`}
             >
-              <item.icon size={24} />
+              <item.icon size={20} />
               <p className="text-[8px]">{item.label}</p>
             </button>
           </Link>
