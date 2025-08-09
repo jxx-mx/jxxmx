@@ -1,3 +1,10 @@
+import ThemeSwitcher from "@/components/theme-switcher";
+
 export default function SettingsPage() {
-  return <div>SettingsPage</div>;
+  return (
+    <div>
+      SettingsPage
+      <ThemeSwitcher />
+    </div>
+  );
 }

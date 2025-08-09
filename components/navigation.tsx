@@ -1,52 +1,79 @@
 "use client";
 
 import Link from "next/link";
-import { Bell, CirclePlus, Glasses, Settings } from "lucide-react";
+import { Bell, ChevronDown, CirclePlus, Glasses, Settings } from "lucide-react";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/drawer";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const navigation = [
   {
     href: "/",
     icon: Glasses,
     label: "와치리스트",
+    description: "와치리스트를 확인해보세요.",
   },
   {
     href: "/register",
     icon: CirclePlus,
     label: "키워드 등록",
+    description: "키워드를 등록해보세요.",
   },
   {
     href: "/notification",
     icon: Bell,
-    label: "알림",
+    label: "알림 센터",
+    description: "알림을 확인해보세요.",
   },
   {
     href: "/settings",
     icon: Settings,
-    label: "마이",
+    label: "내 설정",
+    description: "내 설정을 변경해보세요.",
   },
 ];
 
 export function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-foreground/10 z-50">
-      <div className="flex justify-between">
+    <Drawer direction="top" open={isOpen} onOpenChange={setIsOpen}>
+      <DrawerTrigger asChild>
+        <div className="text-sm font-semibold flex items-center gap-2">
+          <p>ISSUE CHECK</p>
+          <button className="text-foreground/50 bg-secondary p-[0.05rem] rounded-md">
+            <ChevronDown size={18} />
+          </button>
+        </div>
+      </DrawerTrigger>
+      <DrawerTitle className="sr-only" />
+      <DrawerContent className="flex flex-col gap-2 p-4">
         {navigation.map((item, index) => (
-          <Link href={item.href} key={index}>
-            <button
-              type="button"
-              className={`px-4 py-2.5 flex flex-col items-center gap-1 ${
-                pathname === item.href ? "text-primary" : "text-foreground/50"
-              }`}
-            >
-              <item.icon size={20} />
-              <p className="text-[8px]">{item.label}</p>
+          <Link
+            onClick={() => setIsOpen(false)}
+            href={item.href}
+            key={index}
+            className={cn(
+              pathname === item.href ? "bg-secondary/80" : "bg-transparent",
+              "flex items-center gap-1 px-4 py-2 rounded-2xl"
+            )}
+          >
+            <button type="button" className="text-left">
+              <p className="text-xs font-semibold">{item.label}</p>
+              <p className="text-[10px] font-normal text-foreground/50">
+                {item.description}
+              </p>
             </button>
           </Link>
         ))}
-      </div>
-    </div>
+      </DrawerContent>
+    </Drawer>
   );
 }

@@ -6,17 +6,13 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { Button } from "./ui/button";
-import Link from "next/link";
+import { Navigation } from "@/components/navigation";
 
 export async function TopHeader() {
   return (
     <header className="mb-4">
       <div className="flex justify-between items-center max-w-7xl mx-auto p-4">
-        <div className="text-xl font-semibold">
-          <Link className="text-sm" href="/">
-            ISSUE CHECK
-          </Link>
-        </div>
+        <Navigation />
         <div className="flex items-center gap-2">
           <SignedOut>
             <SignInButton>
