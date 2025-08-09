@@ -33,6 +33,7 @@ export default async function Main() {
           year: "numeric",
           month: "long",
           day: "numeric",
+          timeZone: "Asia/Seoul",
         })}
       </p>
 

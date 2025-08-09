@@ -37,7 +37,7 @@ export function Navigation() {
           <Link href={item.href} key={index}>
             <button
               type="button"
-              className={`p-4 flex flex-col items-center gap-1 ${
+              className={`px-4 py-3 flex flex-col items-center gap-1 ${
                 pathname === item.href ? "text-primary" : "text-foreground/50"
               }`}
             >
