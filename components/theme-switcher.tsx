@@ -1,18 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-const ThemeSwitcher = () => {
+export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -25,54 +17,37 @@ const ThemeSwitcher = () => {
     return null;
   }
 
-  const ICON_SIZE = 16;
-
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size={"sm"}>
-          {theme === "light" ? (
-            <Sun
-              key="light"
-              size={ICON_SIZE}
-              className={"text-muted-foreground"}
-            />
-          ) : theme === "dark" ? (
-            <Moon
-              key="dark"
-              size={ICON_SIZE}
-              className={"text-muted-foreground"}
-            />
-          ) : (
-            <Laptop
-              key="system"
-              size={ICON_SIZE}
-              className={"text-muted-foreground"}
-            />
-          )}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-content" align="start">
-        <DropdownMenuRadioGroup
-          value={theme}
-          onValueChange={(e) => setTheme(e)}
-        >
-          <DropdownMenuRadioItem className="flex gap-2" value="light">
-            <Sun size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>Light</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="flex gap-2" value="dark">
-            <Moon size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>Dark</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="flex gap-2" value="system">
-            <Laptop size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>System</span>
-          </DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
+    <div className="flex items-center border rounded-full p-0.5 w-fit">
+      <button
+        onClick={() => setTheme("light")}
+        className={`flex items-center gap-2 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+          theme === "light" ? "bg-secondary border" : "bg-transparent"
+        }`}
+      >
+        <Sun size={14} />
+        라이트
+      </button>
 
-export { ThemeSwitcher };
+      <button
+        onClick={() => setTheme("dark")}
+        className={`flex items-center gap-2 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+          theme === "dark" ? "bg-secondary border" : "bg-transparent"
+        }`}
+      >
+        <Moon size={14} />
+        다크
+      </button>
+
+      <button
+        onClick={() => setTheme("system")}
+        className={`flex items-center gap-2 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+          theme === "system" ? "bg-secondary border" : "bg-transparent"
+        }`}
+      >
+        <Laptop size={14} />
+        자동
+      </button>
+    </div>
+  );
+}

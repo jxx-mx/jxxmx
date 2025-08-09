@@ -1,6 +1,6 @@
 "use server";
 
-import { NewsResponse } from "@/app/news/page";
+import { NewsResponse } from "@/lib/types/type";
 import { NEWS_KEYWORDS } from "@/lib/constant";
 import GNews from "@gnews-io/gnews-io-js";
 
