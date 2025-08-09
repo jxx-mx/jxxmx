@@ -5,7 +5,6 @@ import {
   DrawerTrigger,
 } from "@/components/drawer";
 import { Button } from "@/components/button";
-import ThemeSwitcher from "./theme-switcher";
 
 export function TermsOfService() {
   return (
@@ -35,7 +34,6 @@ export function TermsOfService() {
               바랍니다.
             </p>
           </div>
-          <ThemeSwitcher />
         </footer>
       </DrawerContent>
     </Drawer>
