@@ -37,7 +37,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Nav />
-            <div className="max-w-7xl mx-auto p-4">{children}</div>
+            <div className="max-w-7xl mx-auto px-4">{children}</div>
           </ThemeProvider>
         </body>
       </html>

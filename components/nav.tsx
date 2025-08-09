@@ -8,9 +8,9 @@ import {
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-export function Nav() {
+export async function Nav() {
   return (
-    <header className="border-b border-b-foreground/10">
+    <header className="mb-4">
       <div className="flex justify-between items-center max-w-7xl mx-auto p-4">
         <div className="text-xl font-semibold">
           <Link href="/">JXXMX</Link>
