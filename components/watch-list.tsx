@@ -54,7 +54,7 @@ export function WatchListSkeleton() {
             className="flex items-center justify-between w-full pb-4"
           >
             <div className="flex items-center gap-2">
-              <Skeleton className="w-9 h-9 rounded-full" />
+              <Skeleton className="w-10 h-10 rounded-full" />
               <Skeleton
                 className={`h-4 ${
                   index === 0
