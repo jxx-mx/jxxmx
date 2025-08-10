@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Bell, ChevronDown, CirclePlus, Glasses, Settings } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
@@ -15,27 +15,18 @@ import { useState } from "react";
 const navigation = [
   {
     href: "/",
-    icon: Glasses,
     label: "와치리스트",
-    description: "와치리스트를 확인해보세요.",
+    description: "와치리스트를 확인할 수 있어요.",
   },
   {
     href: "/register",
-    icon: CirclePlus,
     label: "키워드 등록",
-    description: "키워드를 등록해보세요.",
-  },
-  {
-    href: "/notification",
-    icon: Bell,
-    label: "알림 센터",
-    description: "알림을 확인해보세요.",
+    description: "새로운 키워드를 등록할 수 있어요.",
   },
   {
     href: "/settings",
-    icon: Settings,
-    label: "내 설정",
-    description: "내 설정을 변경해보세요.",
+    label: "설정",
+    description: "설정을 변경할 수 있어요.",
   },
 ];
 
