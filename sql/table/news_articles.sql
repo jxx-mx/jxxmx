@@ -14,10 +14,10 @@ CREATE TABLE public.news_articles (
 ALTER TABLE public.news_articles ENABLE ROW LEVEL SECURITY;
 
 -- 읽기: 전체 공개
-CREATE POLICY news_articles_select_all
+CREATE POLICY news_articles_select_authenticated
 ON public.news_articles
 FOR SELECT
-USING (true);
+USING (current_setting('request.jwt.claim.sub', true) IS NOT NULL);
 
 -- 쓰기: 서비스 롤 전용
 CREATE POLICY news_articles_insert_service
